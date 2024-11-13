@@ -5,7 +5,7 @@ SetWorkingDir A_ScriptDir
 
 KeyDelay := 40
 
-Setkeydelay KeyDelay
+SetKeyDelay KeyDelay
 
 GetRobloxClientPos()
 pToken := Gdip_Startup()
@@ -41,16 +41,15 @@ SlashKey := "sc035" ; /
 #include Gdip_ImageSearch.ahk
 #include json.ahk
 #Include roblox.ahk
-#Include walk.ahk
 
 #include %A_ScriptDir%\scripts\
 
 #Include functions.ahk
 #Include gui.ahk
 #include joinserver.ahk
-#Include paths.ahk
-#Include timers.ahk
 #Include webhook.ahk
+
+#Include ../messaging/client.ahk
 
 #Include %A_ScriptDir%\images\bitmaps.ahk
 
@@ -73,80 +72,20 @@ MainLoop() {
         global ServerAttempts := 1
         global NightSearchAttempts := 0
         PlayerStatus("Night Detected!!", "0x000000", , false)
-        Send "{" Zoomout " 15}"
-        global ViciousFeild := 0
-        SetTimer(ViciousSpawnLocation, 500)
-        if (!StartServerLoop()) {
-            return
-        }
+        ; send msg to main macro, send the server ID
+        global RandomServer
+
+        PlayerStatus(RandomServer, "0x11be22", , false, , false)
+        sendServerCode(RandomServer)
+        
+        ;return to join more servers
     } else {
         global ServerAttempts += 1
         global NightSearchAttempts += 1
-        ; global ServerJoinCounter += 1
-        PlayerStatus("Searching For Night Servers. " NightSearchAttempts "x", "0x1ABC9C", , false, , false)
-        return
-    }
-    if (VicSpawnedDetection("none")) {
-        return
-    }
-    SetTimer(ViciousSpawnLocation, 0)
-    if (!ResetCharacterLoop()) {
-        return
-    }
-    SetTimer(ViciousSpawnLocation, 500)
-    if LeaveServerEarly()
-        return
-    if (VicSpawnedDetection("none", false)) {
-        return
-    }
-    PlayerStatus("Going to Pepper Patch.", "0x1F8B4C", , false, , false)
-    PepperPatch()
-    if LeaveServerEarly()
-        return
-    if (VicSpawnedDetection("pepper")) {
-        return
-    }
-    PlayerStatus("Finished Checking Pepper Patch.", "0x57F287", , false)
-    PepperToCannon()
-    if LeaveServerEarly()
-        return
-    if (!CheckFireButton()) {
-        SetTimer(ViciousSpawnLocation, 0)
-        if !ResetCharacterLoop()
-            return
-        SetTimer(ViciousSpawnLocation, 500)
-    }
-    if (VicSpawnedDetection("none"), false) {
-        return
-    }
-    PlayerStatus("Going to Mountain Top Field.", "0x1F8B4C", , false, , false)
-    MountainTop()
-    if LeaveServerEarly()
-        return
-    if (VicSpawnedDetection("mountain")) {
-        return
-    }
-    PlayerStatus("Finished Checking Mountain Top Field.", "0x57F287", , false)
-    PlayerStatus("Going to Cactus Field.", "0x1F8B4C", , false, , false)
-    MountainToCactus()
-    if LeaveServerEarly()
-        return
-    if VicSpawnedDetection("cactus") {
-        return
-    }
-    PlayerStatus("Finished Checking Cactus Field.", "0x57F287", , false)
-    PlayerStatus("Going to Rose Field.", "0x1F8B4C", , false, , false)
-    CactusToRose()
-    sleep 1000
-    if VicSpawnedDetection("rose") {
-        return
-    }
-    PlayerStatus("Finished Checking Rose Field.", "0x57F287", , false)
-    PlayerStatus("No Vicious bees found.", "0x7F8C8D", , false, , false)
-    SetTimer(ViciousSpawnLocation, 0)
 
-    ; BeesmasInterupt()
-
+        PlayerStatus("Alt Searching For Night Servers. " NightSearchAttempts "x", "0x1ABC9C", , false, , false)
+        return
+    }
 }
 
 JoinServer() {
@@ -172,6 +111,7 @@ JoinServer() {
         return 2
     }
 }
+
 loadroblox() {
     joinrandomserver()
     loop 15 {
