@@ -1,7 +1,5 @@
 # information
-An alt night searching macro for epic's vichop.
-uh it appears I cannot make a fork private so if u guys can figure out
-how to use this ig free alt vichop
+bro i cant use github wtf happened to this main
 
 **performance stats** settings should also be turned **OFF** if you have it enabled
 
