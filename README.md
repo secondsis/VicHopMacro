@@ -1,5 +1,7 @@
 # information
-Bee swarm macro without searchers or passive alts. Only the main account server hops to find vicious bees.
+An alt night searching macro for epic's vichop.
+uh it appears I cannot make a fork private so if u guys can figure out
+how to use this ig free alt vichop
 
 **performance stats** settings should also be turned **OFF** if you have it enabled
 
@@ -34,10 +36,9 @@ Make sure the / key is worked as intended for the macro to work correctly
 
 ## Contact
 
-My Discord: ``` _epic. ``` 
+Original Creator's Discord: ``` _epic. ``` 
+My Discord: ```snowedn```
 
 [Github Link](https://github.com/epicisgood/VicHopMacro)
 
-Hope the macro is a W for real pay me 1 bee cub right now!! 🤑
-
-Hopefully you dont have a stinger shortage fr.
+pls donate im poor
