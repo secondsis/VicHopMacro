@@ -1,9 +1,20 @@
 global serverIds := []
 global errorMessage := ""
+global altNightServerIds := []
+
 joinrandomserver() {
     global serverIds
+    pullAltServers()
     if (serverIds.Length > 1) {
-        global RandomServer := serverIds[Random(1, serverIds.Length)]
+        if(altNightServerIds.Length >= 1) {
+            global RandomServer := altNightServerIds[1]
+            altNightServerIds.RemoveAt(1)
+            deleteFirstAltServer()
+            
+            PlayerStatus("Joining alt server" RandomServer, "0x000000", , false, , false)
+        } else {
+            global RandomServer := serverIds[Random(1, serverIds.Length)]
+        }
         run '"roblox://placeId=1537690962&gameInstanceId=' RandomServer '"'
 
     } else {
@@ -14,6 +25,7 @@ joinrandomserver() {
     }
 
 }
+
 GetServerIds() {
     try {
         global serverIds := []

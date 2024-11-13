@@ -5,7 +5,7 @@ SetWorkingDir A_ScriptDir
 
 KeyDelay := 40
 
-Setkeydelay KeyDelay
+SetKeyDelay KeyDelay
 
 GetRobloxClientPos()
 pToken := Gdip_Startup()
@@ -51,6 +51,8 @@ SlashKey := "sc035" ; /
 #Include paths.ahk
 #Include timers.ahk
 #Include webhook.ahk
+
+#Include ../messaging/server.ahk
 
 #Include %A_ScriptDir%\images\bitmaps.ahk
 
