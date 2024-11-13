@@ -49,6 +49,8 @@ SlashKey := "sc035" ; /
 #include joinserver.ahk
 #Include webhook.ahk
 
+#Include ../messaging/server.ahk
+
 #Include %A_ScriptDir%\images\bitmaps.ahk
 
 global ServerAttempts := 1 ; used for joinserver function to Clear ServerIds()
